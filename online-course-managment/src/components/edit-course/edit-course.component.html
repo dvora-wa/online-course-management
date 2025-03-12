@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>עריכת קורס</h2>
+
+  <form (ngSubmit)="updateCourse()">
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>כותרת</mat-label>
+        <input matInput type="text" id="title" [(ngModel)]="course.title" name="title" required />
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>תיאור</mat-label>
+        <textarea matInput id="description" [(ngModel)]="course.description" name="description" required></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <button mat-raised-button color="primary" type="submit">עדכן קורס</button>
+    </div>
+  </form>
+</div>

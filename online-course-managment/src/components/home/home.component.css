@@ -1,0 +1,30 @@
+.welcome-text {
+    font-size: 50px;
+  font-weight: bold;
+  color: #d32f2f; /* צבע טקסט אדום */
+  text-align: center;
+  margin-top: 200px;
+  animation: slideAndFade 5s ease-in-out infinite; /* תזוזה והבהוב אינסופי */
+}
+
+/* אנימציה של תזוזה והבהוב */
+@keyframes slideAndFade {
+    0% {
+        transform: translateX(-100px);
+        /* מתחיל מחוץ למסך שמאלה */
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateX(0);
+        /* מגיע לאמצע */
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100px);
+        /* נעלם בצד ימין */
+        opacity: 0;
+    }
+}
+

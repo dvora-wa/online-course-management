@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="header-toolbar">
+    <div class="left-container">
+        @if(isLoggedIn()){
+            <a mat-button (click)="navigateToLogin()">Login</a>
+        }
+      @else{
+        <a mat-button (click)="logout()">Logout</a>
+      }
+      
+    </div>
+  
+    <div class="center-container">
+      <img src="image/1.jpg" alt="Logo" class="header-logo" />
+      <span class="project-title">Online Course Management</span>
+    </div>
+  
+    <div class="right-container">
+      <a mat-button routerLink="/home" (click)="navigateToHome()">Home</a>
+      <a mat-button routerLink="/courses" (click)="navigateToCourses()">Courses</a>
+      <a mat-button routerLink="/add-courses" (click)="navigateToAddCourses()">Add Courses</a>
+    </div>
+  </mat-toolbar>
+  

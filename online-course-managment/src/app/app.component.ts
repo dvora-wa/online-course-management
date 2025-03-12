@@ -1,13 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LayoutComponent } from './components/layout/layout.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { LayoutComponent } from "../components/layout/layout.component";
+
 
 @Component({
   selector: 'app-root',
-  imports: [LayoutComponent],
+  standalone: true,
+  imports: [ MatToolbarModule, LayoutComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.css'
 })
+
 export class AppComponent {
-  title = 'online-course-managment';
+  title = 'courses';
+
 }

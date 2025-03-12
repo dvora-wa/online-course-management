@@ -1,46 +1,58 @@
-// import { Component, inject } from '@angular/core';
-// import { Router } from '@angular/router';
-
-// @Component({
-//   selector: 'app-header',
-//   imports: [],
-//   templateUrl: './header.component.html',
-//   styleUrl: './header.component.scss'
-// })
-// export class HeaderComponent {
-
-//   private readonly router = inject(Router);
-
-//   goLogin() {
-//     this.router.navigate(["login"]);
-//   }
-
-//   goRegister()
-//   {
-//     this.router.navigate(["register"]);
-//   }
-// }
-import { Component, inject } from '@angular/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { UserService } from '../../services/user.service';
+import { CommonModule, NgIf } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginComponent } from '../auth/login/login.component';
-import { RegisterComponent } from '../auth/register/register.component';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
+  imports: [MatToolbarModule, NgIf, MatMenuModule, MatIconModule, MatButtonModule, CommonModule ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-  private readonly dialog = inject(MatDialog);
+export class HeaderComponent implements OnInit, OnDestroy{
+  private readonly router = inject(Router);
+  // private readonly userService = inject(UserService);
+  // user$ = this.userService.user$;
+  user$: Observable<string | null>;
+  user: string | null = null;
+  private userSubscription: Subscription | undefined;
+  isSidebarOpen: boolean | undefined;
 
-  openLoginDialog() {
-    this.dialog.open(LoginComponent, { width: '400px' });
+  constructor(private userService: UserService) {
+    this.user$ = this.userService.getUser();
   }
 
-  openRegisterDialog() {
-    this.dialog.open(RegisterComponent, { width: '400px' });
+  ngOnInit() {
+    this.userSubscription = this.user$.subscribe(user => {
+      this.user = user;
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+
+  logout() {
+    this.userService.clearUser();
+    this.router.navigate(['login']);
+  }
+  goLogin() {
+    this.router.navigate(['login']);
+  }
+
+  goRegister() {
+    this.router.navigate(['register']);
   }
 }
