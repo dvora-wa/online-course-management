@@ -1,0 +1,30 @@
+.container {
+    display: flex; /* משתמש ב-Flexbox */
+    flex-direction: column; /* מסדר את התוכן בעמודה */
+    align-items: center; /* מרכז את התוכן באופן אופקי */
+    text-align: center; /* מרכז את הטקסט */
+}
+
+.error {
+    color: red;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+ul {
+    list-style-type: none; /* מסיר את הסימונים של הרשימה */
+    padding: 0; /* מסיר את הריפוד */
+}
+
+li {
+    margin-bottom: 15px; /* רווח בין הפריטים */
+    border: 1px solid #ccc; /* גבול סביב כל קורס */
+    padding: 10px; /* ריפוד פנימי */
+    border-radius: 5px; /* פינות מעוגלות */
+}
+
+button {
+    margin-right: 5px; /* רווח בין הכפתורים */
+}

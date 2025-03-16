@@ -1,0 +1,44 @@
+<h1>רשימת שיעורים</h1>
+
+<div class="lesson-container">
+  @if (role === 'teacher') {
+    <button mat-fab color="primary" (click)="navigateToAddLesson()" class="add-lesson-btn">
+      <mat-icon>add</mat-icon>
+    </button>
+  }
+
+  <div class="lessons-list">
+    <!-- הצגת השיעורים -->
+    @for (lesson of lessons; track lesson.id) {
+      <mat-card class="lesson-item">
+        <mat-card-header>
+          <mat-card-title>{{ lesson.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="content-container">
+            <span class="content-label">תוכן:</span>
+            <span class="content-text">{{ lesson.content || 'תוכן' }}</span>
+          </div>
+        </mat-card-content>
+        
+        <!-- כפתורי מחיקה ועריכה אם המשתמש הוא מורה -->
+        @if (role === 'teacher') {
+          <mat-card-actions align="end">
+            <button mat-button color="warn" (click)="deleteLesson(lesson.id)">
+              <mat-icon>delete</mat-icon> מחק
+            </button>
+            <button mat-button color="accent" (click)="navigateToEditLesson(lesson.id)">
+              <mat-icon>edit</mat-icon> ערוך
+            </button>
+          </mat-card-actions>
+        }
+      </mat-card>
+    }
+  </div>
+</div>
+
+<style>
+  .add-lesson-btn {
+    margin-bottom: 16px;
+  }
+</style>

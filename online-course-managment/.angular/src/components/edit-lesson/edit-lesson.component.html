@@ -1,0 +1,27 @@
+<form (ngSubmit)="updateLesson()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>עריכת שיעור</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+  
+        <!-- כותרת השיעור -->
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>כותרת השיעור:</mat-label>
+          <input matInput type="text" id="title" [(ngModel)]="lesson.title" name="title" required>
+        </mat-form-field>
+  
+        <!-- תוכן השיעור -->
+        <mat-form-field appearance="fill" class="form-field">
+            <mat-label>תוכן השיעור:</mat-label>
+            <input matInput type="text" id="content" [(ngModel)]="lesson.content" name="content" required>
+          </mat-form-field>
+        
+      </mat-card-content>
+  
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" type="submit">שמור שינויים</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

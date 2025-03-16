@@ -1,0 +1,23 @@
+<!-- <mat-card class="auth-card" > 
+    <mat-card-header>
+      <mat-card-title>{{ isEditMode ? 'עריכת קורס' : 'הוספת קורס' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content> -->
+<h1>{{ isEditMode ? 'עריכת קורס' : 'הוספת קורס' }}</h1>
+
+<form [formGroup]="postCourseForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="course">
+        <mat-form-field appearance="fill">
+            <mat-label>title </mat-label>
+            <input matInput formControlName="title"/>         
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill">
+            <mat-label>description </mat-label>
+            <input matInput formControlName="description"/>         
+        </mat-form-field>
+    </div>
+    <button mat-raised-button type="submit" [disabled]="postCourseForm.invalid">
+        {{ isEditMode ? 'עדכון קורס' : 'הוספת קורס' }}
+    </button>
+</form>
