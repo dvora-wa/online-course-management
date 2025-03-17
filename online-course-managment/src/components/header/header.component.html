@@ -1,10 +1,10 @@
 <mat-toolbar color="primary" class="header-toolbar">
     <div class="left-container">
         @if(isLoggedIn()){
-            <a mat-button (click)="navigateToLogin()">Login</a>
+          <a mat-button (click)="logout()">Logout</a>
         }
       @else{
-        <a mat-button (click)="logout()">Logout</a>
+        <a mat-button (click)="navigateToLogin()">Login</a>
       }
       
     </div>
